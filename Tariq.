@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Illimité Premium | by Tariq</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00ff88;
+      --secondary: #007bff;
+      --dark: #121212;
+      --light: #f8f9fa;
+      --accent: #ff6b6b;
+      --gold: #ffd700;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 123, 255, 0.1) 0%, transparent 50%);
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.6), 0 0 30px rgba(0, 123, 255, 0.4);
+      }
+    }
+    
+    .tagline {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .profile {
+      position: relative;
+      margin: 2rem 0;
+    }
+    
+    .profile-img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid var(--primary);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 136, 0.8);
+    }
+    
+    .badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--accent);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn {
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--dark);
+      box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
+      background-color: #00e67a;
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(0, 255, 136, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .btn-gold {
+      background-color: var(--gold);
+      color: var(--dark);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+    
+    .btn-gold:hover {
+      background-color: #e6c200;
+      transform: translateY(-3px);
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+      width: 100%;
+    }
+    
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .feature-price {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 1rem 0;
+      color: var(--gold);
+    }
+    
+    .feature-desc {
+      opacity: 0.8;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+    
+    .feature-button {
+      margin-top: 1.5rem;
+      align-self: center;
+    }
+    
+    .panels-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      margin-top: 3rem;
+    }
+    
+    .panel-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .panel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .panel-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .panel-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--gold);
+      margin: 1.5rem 0;
+    }
+    
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tagline {
+        font-size: 1.2rem;
+      }
+      
+      .profile-img {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .panels-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>PANEL ILLIMITÉ PREMIUM</h1>
+      <p class="tagline">Ici, le client est roi - Service haut de gamme</p>
+    </header>
+    
+    <div class="profile">
+      <img src="https://files.catbox.moe/lvzwhm.jpeg" alt="Tariq" class="profile-img">
+      <div class="badge">
+        <i class="fas fa-crown"></i>
+      </div>
+    </div>
+    
+    <div class="cta-buttons">
+      <a href="https://wa.me/237656683729" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i> Commander Maintenant
+      </a>
+      <button class="btn btn-secondary" id="showPanelsBtn">
+        <i class="fas fa-gem"></i> Voir Nos Offres
+      </button>
+    </div>
+    
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <h3 class="feature-title">Accès Illimité</h3>
+        <p class="feature-desc">Profitez d'un accès sans restrictions à nos panels premium 24h/24 et 7j/7.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3 class="feature-title">Vitesse Maximale</h3>
+        <p class="feature-desc">Des serveurs ultra-rapides pour une expérience fluide et sans latence.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="feature-title">Sécurité Totale</h3>
+        <p class="feature-desc">Protection avancée pour garantir la confidentialité de vos activités.</p>
+      </div>
+    </div>
+    
+    <div class="panels-container" id="panelsContainer" style="display: none;">
+      <div class="panel-card">
+        <h3 class="panel-title">Panel 1GB</h3>
+        <div class="panel-price">500 FCFA</div>
+        <a href="https://wa.me/237656683729?text=Je%20veux%20commander%20le%20Panel%201GB%20%C3%A0%20500%20FCFA" class="btn btn-gold feature-button">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+      </div>
+      
+      <div class="panel-card">
+        <h3 class="panel-title">Panel 5GB</h3>
+        <div class="panel-price">1000 FCFA</div>
+        <a href="https://wa.me/237656683729?text=Je%20veux%20commander%20le%20Panel%205GB%20%C3%A0%201000%20FCFA" class="btn btn-gold feature-button">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+      </div>
+      
+      <div class="panel-card">
+        <h3 class="panel-title">Panel 10GB</h3>
+        <div class="panel-price">1500 FCFA</div>
+        <a href="https://wa.me/237656683729?text=Je%20veux%20commander%20le%20Panel%2010GB%20%C3%A0%201500%20FCFA" class="btn btn-gold feature-button">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+      </div>
+      
+      <div class="panel-card">
+        <h3 class="panel-title">Panel Illimité</h3>
+        <div class="panel-price">2500 FCFA</div>
+        <a href="https://wa.me/237656683729?text=Je%20veux%20commander%20le%20Panel%20Illimit%C3%A9%20%C3%A0%202500%20FCFA" class="btn btn-gold feature-button">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+      </div>
+      
+      <div class="panel-card">
+        <h3 class="panel-title">Panel Admin</h3>
+        <div class="panel-price">6500 FCFA</div>
+        <a href="https://wa.me/237656683729?text=Je%20veux%20commander%20le%20Panel%20Admin%20%C3%A0%206500%20FCFA" class="btn btn-gold feature-button">
+          <i class="fab fa-whatsapp"></i> Commander
+        </a>
+      </div>
+    </div>
+    
+    <footer>
+      <p>© 2025 Panel Illimité Premium by Tariq. Tous droits réservés.</p>
+    </footer>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('h1, .tagline, .profile, .cta-buttons, .features');
+      
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, index * 200);
+        
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      });
+      
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+      
+      const showPanelsBtn = document.getElementById('showPanelsBtn');
+      const panelsContainer = document.getElementById('panelsContainer');
+      
+      showPanelsBtn.addEventListener('click', () => {
+        if (panelsContainer.style.display === 'none') {
+          panelsContainer.style.display = 'grid';
+          setTimeout(() => {
+            panelsContainer.style.opacity = '1';
+            panelsContainer.style.transform = 'translateY(0)';
+          }, 10);
+          showPanelsBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Masquer les Offres';
+        } else {
+          panelsContainer.style.opacity = '0';
+          panelsContainer.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            panelsContainer.style.display = 'none';
+          }, 300);
+          showPanelsBtn.innerHTML = '<i class="fas fa-gem"></i> Voir Nos Offres';
+        }
+      });
+      
+     
+      panelsContainer.style.opacity = '0';
+      panelsContainer.style.transform = 'translateY(20px)';
+      panelsContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+  </script>
+</body>
+
+</html>
